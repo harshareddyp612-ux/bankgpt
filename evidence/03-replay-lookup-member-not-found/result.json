@@ -1,0 +1,19 @@
+{
+  "run_id": "03-replay-lookup-member-not-found",
+  "artifact_id": "38ad3a71-e96e-4b0b-a99b-4bbaf7edab4d",
+  "artifact_name": "lookup_member_savings_balance",
+  "artifact_version": "1.0.0",
+  "status": "BUSINESS_OUTCOME",
+  "outcome_code": "MEMBER_NOT_FOUND",
+  "message": "No member exists for the supplied member number - observed: \"No member found matching 99999. Verify the member number and try again. Member Number: Enter the 3-8 digit member\"",
+  "outputs": {},
+  "outputs_raw": {},
+  "steps": [],
+  "failed_step": "s01",
+  "expected": "Type {{member_id}} into Member Number text box",
+  "observed": "No member found matching 99999. Verify the member number and try again. Member Number: Enter the 3-8 digit member",
+  "human_interventions": [],
+  "llm_calls": 0,
+  "evidence_dir": "/Users/karthikg/Desktop/bankgpt/evidence/03-replay-lookup-member-not-found",
+  "duration_ms": 513
+}

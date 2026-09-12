@@ -1,0 +1,31 @@
+[project]
+name = "cua"
+version = "0.1.0"
+description = "Computer-Use Automation System: LLM discovery -> typed artifact -> deterministic replay, with policy guardrails and human handoff"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.60",
+    "playwright>=1.50",
+    "pydantic>=2.7",
+    "flask>=3.0",
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "requests>=2.31"]
+
+[project.scripts]
+cua = "cua.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["cua*", "target_app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: needs a browser and the mock app"]

@@ -1,0 +1,10 @@
+{
+  "kind": "replay",
+  "status": "ESCALATED_ABORTED",
+  "outcome_code": "RISKY_NEEDS_CONFIRMATION",
+  "artifact": "open_member_subaccount",
+  "outputs": {},
+  "run_id": "09-replay-open-blocked-unapproved",
+  "duration_s": 1.57,
+  "events": 34
+}

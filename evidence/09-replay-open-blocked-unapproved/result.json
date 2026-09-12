@@ -1,0 +1,131 @@
+{
+  "run_id": "09-replay-open-blocked-unapproved",
+  "artifact_id": "d211e1c1-52d3-49c7-8675-8066b8f1d813",
+  "artifact_name": "open_member_subaccount",
+  "artifact_version": "1.0.0",
+  "status": "ESCALATED_ABORTED",
+  "outcome_code": "RISKY_NEEDS_CONFIRMATION",
+  "message": "needs a human (RISKY_NEEDS_CONFIRMATION) but this run is unattended (operator=none); intervention request was raised and recorded. risky step 'Click Open Sub-Account button': commit control 'Open Sub-Account' matches risky pattern; artifact not approved; caller did not pass confirm_risky",
+  "outputs": {},
+  "outputs_raw": {},
+  "steps": [
+    {
+      "step_id": "s01",
+      "action": "type",
+      "description": "Type {{member_id}} into Member Number text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Member Number, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 225,
+      "note": null
+    },
+    {
+      "step_id": "s02",
+      "action": "click",
+      "description": "Click Open Sub-Account link",
+      "status": "ok",
+      "locator_used": "role:role:role=link, name=Open Sub-Account",
+      "locator_attempts": [
+        {
+          "strategy": "role",
+          "confidence": 0.9,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 256,
+      "note": null
+    },
+    {
+      "step_id": "s03",
+      "action": "select",
+      "description": "Select '{{product}}' in Product Type dropdown",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Product Type, control=select",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 218,
+      "note": null
+    },
+    {
+      "step_id": "s04",
+      "action": "type",
+      "description": "Type {{nickname}} into Account Nickname text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Account Nickname, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 232,
+      "note": null
+    },
+    {
+      "step_id": "s05",
+      "action": "type",
+      "description": "Type {{deposit}} into Initial Deposit text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Initial Deposit, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 218,
+      "note": null
+    }
+  ],
+  "failed_step": "s06",
+  "expected": null,
+  "observed": null,
+  "human_interventions": [
+    {
+      "step_id": "s06",
+      "kind": "confirm_risky",
+      "reason_code": "RISKY_NEEDS_CONFIRMATION",
+      "reason": "risky step 'Click Open Sub-Account button': commit control 'Open Sub-Account' matches risky pattern; artifact not approved; caller did not pass confirm_risky",
+      "operator": "none",
+      "decision": "abort",
+      "human_actions": [],
+      "took_s": 0.0
+    }
+  ],
+  "llm_calls": 0,
+  "evidence_dir": "/Users/karthikg/Desktop/bankgpt/evidence/09-replay-open-blocked-unapproved",
+  "duration_ms": 1257
+}

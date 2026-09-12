@@ -1,0 +1,63 @@
+{% extends "_layout.html" %}{% set page_title = "Member Inquiry" %}{% set crumb = "Member Lookup &raquo; Member Inquiry" %}
+{% block body %}
+<table width="100%" cellpadding="0" cellspacing="0"><tr>
+ <td><font size="2"><b>Member Inquiry</b></font> &nbsp;<font size="1" class="g">Member #{{ m.member_number }}</font></td>
+ <td align="right"><a href="/teller/members/search">Back to Lookup</a></td>
+</tr></table>
+<hr size="1">
+<table width="100%" cellpadding="0" cellspacing="8"><tr valign="top">
+ <td width="48%">
+  <table width="100%" cellpadding="3" cellspacing="0" class="c4" border="0">
+   <tr class="c3"><td colspan="2"><b>Member Information</b></td></tr>
+   <tr><td class="g" width="38%">Member Number</td><td>{{ m.member_number }}</td></tr>
+   <tr><td class="g">Name</td><td>{{ m.name }}</td></tr>
+   <tr><td class="g">SSN</td><td>***-**-{{ m.ssn_last4 }}</td></tr>
+   <tr><td class="g">Date of Birth</td><td>{{ m.dob }}</td></tr>
+   <tr><td class="g">Address</td><td>{{ m.address }}</td></tr>
+   <tr><td class="g">Phone</td><td>{{ m.phone }}</td></tr>
+   <tr><td class="g">Status</td><td>{{ m.status }}</td></tr>
+   <tr><td class="g">Home Branch</td><td>{{ m.branch }}</td></tr>
+  </table>
+ </td>
+ <td>
+  <table width="100%" cellpadding="3" cellspacing="0" class="c4" border="0">
+   <tr class="c3"><td colspan="5"><b>Share &amp; Loan Accounts</b></td></tr>
+   <tr class="c3">
+    <td><font size="1"><b>Suffix</b></font></td>
+    <td><font size="1"><b>Product</b></font></td>
+    <td><font size="1"><b>Nickname</b></font></td>
+    <td align="right"><font size="1"><b>Current Balance</b></font></td>
+    <td><font size="1"><b>Status</b></font></td>
+   </tr>
+   {% for a in m.accounts %}
+   <tr>
+    <td>{{ a.suffix }}</td>
+    <td>{{ a.type }}</td>
+    <td>{{ a.nickname }}</td>
+    <td align="right">{{ a.balance|money }}</td>
+    <td>{{ a.status }}</td>
+   </tr>
+   {% endfor %}
+  </table>
+  <br>
+  <table cellpadding="3" cellspacing="0"><tr>
+   <td><a href="/teller/members/{{ m.member_number }}/subaccounts/new">Open Sub-Account</a></td>
+   <td>&nbsp;|&nbsp;</td>
+   <td><a href="/teller/members/search">New Lookup</a></td>
+  </tr></table>
+ </td>
+</tr></table>
+{% endblock %}
+{% block extra %}
+{% if dialog %}
+<div class="ovl">
+ <div class="bx">
+  <table width="100%" cellpadding="4" cellspacing="0">
+   <tr><td><font size="2"><b>System Notice</b></font></td></tr>
+   <tr><td><font size="1">Scheduled core maintenance window: Sunday 02:00-04:00 CT. Real-time posting may be delayed. Please acknowledge to continue.</font></td></tr>
+   <tr><td align="right"><input type="button" value="Dismiss" onclick="document.querySelector('.ovl').style.display='none'"></td></tr>
+  </table>
+ </div>
+</div>
+{% endif %}
+{% endblock %}

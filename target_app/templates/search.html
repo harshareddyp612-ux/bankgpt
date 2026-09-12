@@ -1,0 +1,27 @@
+{% extends "_layout.html" %}{% set page_title = "Member Lookup" %}{% set crumb = "Member Lookup" %}
+{% block body %}
+<font size="2"><b>Member Lookup</b></font>
+<hr size="1">
+{% if message %}
+<table cellpadding="4" cellspacing="0" class="c4" width="100%"><tr><td>
+  <font class="{{ 'w' if message[0]=='warn' else 'i' }}">{{ message[1] }}</font>
+</td></tr></table>
+<br>
+{% endif %}
+<form method="post" action="/teller/members/search" name="frm1">
+<table cellpadding="3" cellspacing="0" border="0">
+ <tr>
+  <td class="g">Member Number:</td>
+  <td><input type="text" name="acct_q" size="14" maxlength="8" value="{{ query }}"></td>
+  <td><input type="submit" value="Search"></td>
+  <td><input type="reset" value="Clear"></td>
+ </tr>
+ <tr><td colspan="4"><font size="1" class="g">Enter the 3-8 digit member number. Wildcards are not supported on this screen.</font></td></tr>
+</table>
+</form>
+<br>
+<table cellpadding="3" cellspacing="0" class="c3" width="100%">
+ <tr><td><font size="1"><b>Recent Lookups</b></font></td></tr>
+ <tr class="c4"><td><font size="1">No recent lookups this session.</font></td></tr>
+</table>
+{% endblock %}

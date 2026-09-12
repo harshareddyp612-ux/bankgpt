@@ -1,0 +1,606 @@
+{
+  "schema_version": "1.0",
+  "id": "d211e1c1-52d3-49c7-8675-8066b8f1d813",
+  "name": "open_member_subaccount",
+  "version": "1.0.0",
+  "description": "Sub-account opened for member {{member_id}} with the specified product, nickname and deposit; confirmation screen reached.",
+  "goal": "For member {{member_id}}, open a new sub-account of product type {{product}} with nickname {{nickname}} and an initial deposit of {{deposit}}, and reach the confirmation screen.",
+  "created_at": "2026-09-12T04:43:20.867854+00:00",
+  "created_from_run": "08-discovery-open_member_subaccount",
+  "approval": "approved",
+  "target": {
+    "app_id": "cu_core_teller_desk",
+    "surface": "legacy_web",
+    "base_url": "http://127.0.0.1:5055",
+    "entry_path": "/teller/members/search",
+    "vendor": "Fictional Core Vendor Inc.",
+    "app_version": "7.2.14"
+  },
+  "tenant": {
+    "tenant_id": null,
+    "app_version": null,
+    "step_overrides": {}
+  },
+  "inputs": [
+    {
+      "name": "member_id",
+      "type": "string",
+      "description": "Value for {{member_id}} in the goal",
+      "required": true,
+      "example": "12345",
+      "pattern": "^\\d+$",
+      "sensitive": false
+    },
+    {
+      "name": "product",
+      "type": "string",
+      "description": "Value for {{product}} in the goal",
+      "required": true,
+      "example": "Money Market",
+      "pattern": null,
+      "sensitive": false
+    },
+    {
+      "name": "nickname",
+      "type": "string",
+      "description": "Value for {{nickname}} in the goal",
+      "required": true,
+      "example": "Vacation Fund",
+      "pattern": null,
+      "sensitive": false
+    },
+    {
+      "name": "deposit",
+      "type": "string",
+      "description": "Value for {{deposit}} in the goal",
+      "required": true,
+      "example": "100",
+      "pattern": "^\\d+$",
+      "sensitive": false
+    }
+  ],
+  "outputs": [],
+  "steps": [
+    {
+      "id": "s01",
+      "action": "type",
+      "description": "Type {{member_id}} into Member Number text box",
+      "target": {
+        "description": "Member Number text box",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "near_text",
+            "value": {
+              "text": "Member Number",
+              "control": "input"
+            },
+            "confidence": 0.78,
+            "rationale": "legacy table layout: first control after the labelling cell"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "input[name=\"acct_q\"]"
+            },
+            "confidence": 0.72,
+            "rationale": "server-side form field name; stable because the backend depends on it"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[1]/td[2]/input[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 253.2,
+              "y": 112.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "href": null,
+          "type": "text"
+        }
+      },
+      "input": "{{member_id}}",
+      "options": {
+        "clear": true,
+        "press_enter": true
+      },
+      "expect": [
+        {
+          "kind": "url_matches",
+          "value": "^https?://[^/]+/teller/members/\\d+(\\?.*)?$",
+          "timeout_ms": 8000,
+          "description": "screen changed to /teller/members/{{member_id}}"
+        }
+      ],
+      "risk": "safe",
+      "risk_reason": null,
+      "output": null
+    },
+    {
+      "id": "s02",
+      "action": "click",
+      "description": "Click Open Sub-Account link",
+      "target": {
+        "description": "Open Sub-Account link",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "role",
+            "value": {
+              "role": "link",
+              "name": "Open Sub-Account"
+            },
+            "confidence": 0.9,
+            "rationale": "accessible role + name; survives layout and attribute changes"
+          },
+          {
+            "strategy": "text",
+            "value": {
+              "text": "Open Sub-Account",
+              "tag": "a"
+            },
+            "confidence": 0.6,
+            "rationale": "exact visible text"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "a[href=\"/teller/members/{{member_id}}/subaccounts/new\"]"
+            },
+            "confidence": 0.45,
+            "rationale": "link target; parameter values inside are templated by the recorder"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/table[2]/tbody[1]/tr[1]/td[2]/table[2]/tbody[1]/tr[1]/td[1]/a[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 698.0,
+              "y": 285.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "a",
+          "role": "link",
+          "name": "Open Sub-Account",
+          "text": "Open Sub-Account",
+          "href": "/teller/members/{{member_id}}/subaccounts/new",
+          "type": null
+        }
+      },
+      "input": null,
+      "options": {},
+      "expect": [
+        {
+          "kind": "url_matches",
+          "value": "^https?://[^/]+/teller/members/\\d+/subaccounts/new(\\?.*)?$",
+          "timeout_ms": 8000,
+          "description": "screen changed to /teller/members/{{member_id}}/subaccounts/new"
+        }
+      ],
+      "risk": "safe",
+      "risk_reason": null,
+      "output": null
+    },
+    {
+      "id": "s03",
+      "action": "select",
+      "description": "Select '{{product}}' in Product Type dropdown",
+      "target": {
+        "description": "Product Type dropdown",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "near_text",
+            "value": {
+              "text": "Product Type",
+              "control": "select"
+            },
+            "confidence": 0.78,
+            "rationale": "legacy table layout: first control after the labelling cell"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "select[name=\"prod_cd\"]"
+            },
+            "confidence": 0.72,
+            "rationale": "server-side form field name; stable because the backend depends on it"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[1]/td[2]/select[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 267.9,
+              "y": 115.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "select",
+          "role": "combobox",
+          "name": "",
+          "text": "-- select -- Regular Savings Share Draft Checking {{product}} Holiday Club",
+          "href": null,
+          "type": null
+        }
+      },
+      "input": null,
+      "options": {
+        "option_label": "{{product}}"
+      },
+      "expect": [],
+      "risk": "safe",
+      "risk_reason": null,
+      "output": null
+    },
+    {
+      "id": "s04",
+      "action": "type",
+      "description": "Type {{nickname}} into Account Nickname text box",
+      "target": {
+        "description": "Account Nickname text box",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "near_text",
+            "value": {
+              "text": "Account Nickname",
+              "control": "input"
+            },
+            "confidence": 0.78,
+            "rationale": "legacy table layout: first control after the labelling cell"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "input[name=\"acct_nick\"]"
+            },
+            "confidence": 0.72,
+            "rationale": "server-side form field name; stable because the backend depends on it"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[2]/td[2]/input[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 287.4,
+              "y": 140.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "href": null,
+          "type": "text"
+        }
+      },
+      "input": "{{nickname}}",
+      "options": {
+        "clear": true
+      },
+      "expect": [],
+      "risk": "safe",
+      "risk_reason": null,
+      "output": null
+    },
+    {
+      "id": "s05",
+      "action": "type",
+      "description": "Type {{deposit}} into Initial Deposit text box",
+      "target": {
+        "description": "Initial Deposit text box",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "near_text",
+            "value": {
+              "text": "Initial Deposit",
+              "control": "input"
+            },
+            "confidence": 0.78,
+            "rationale": "legacy table layout: first control after the labelling cell"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "input[name=\"init_dep\"]"
+            },
+            "confidence": 0.72,
+            "rationale": "server-side form field name; stable because the backend depends on it"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[3]/td[2]/input[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 238.4,
+              "y": 167.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "",
+          "text": "",
+          "href": null,
+          "type": "text"
+        }
+      },
+      "input": "{{deposit}}",
+      "options": {
+        "clear": true
+      },
+      "expect": [],
+      "risk": "safe",
+      "risk_reason": null,
+      "output": null
+    },
+    {
+      "id": "s06",
+      "action": "click",
+      "description": "Click Open Sub-Account button",
+      "target": {
+        "description": "Open Sub-Account button",
+        "frame_path": [],
+        "candidates": [
+          {
+            "strategy": "role",
+            "value": {
+              "role": "button",
+              "name": "Open Sub-Account"
+            },
+            "confidence": 0.9,
+            "rationale": "accessible role + name; survives layout and attribute changes"
+          },
+          {
+            "strategy": "css",
+            "value": {
+              "selector": "input[type=\"submit\"][value=\"Open Sub-Account\"]"
+            },
+            "confidence": 0.66,
+            "rationale": "button value attribute"
+          },
+          {
+            "strategy": "xpath",
+            "value": {
+              "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[2]/input[1]"
+            },
+            "confidence": 0.3,
+            "rationale": "structural fallback; breaks on layout change"
+          },
+          {
+            "strategy": "coords",
+            "value": {
+              "x": 256.8,
+              "y": 219.5
+            },
+            "confidence": 0.1,
+            "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+          }
+        ],
+        "recorded": {
+          "tag": "input",
+          "role": "button",
+          "name": "Open Sub-Account",
+          "text": "Open Sub-Account",
+          "href": null,
+          "type": "submit"
+        }
+      },
+      "input": null,
+      "options": {},
+      "expect": [
+        {
+          "kind": "url_matches",
+          "value": "^https?://[^/]+/teller/members/\\d+/subaccounts/confirm/[^/]+(\\?.*)?$",
+          "timeout_ms": 8000,
+          "description": "screen changed to /teller/members/{{member_id}}/subaccounts/confirm/CFD3DA58F9"
+        }
+      ],
+      "risk": "risky",
+      "risk_reason": "CONFIRM risk=risky code=RISKY_NEEDS_CONFIRMATION :: commit control 'Open Sub-Account' matches risky pattern; operator confirmation required",
+      "output": null
+    }
+  ],
+  "checkpoint": {
+    "description": "Sub-account opened for member {{member_id}} with the specified product, nickname and deposit; confirmation screen reached.",
+    "conditions": [
+      {
+        "kind": "url_matches",
+        "value": "^https?://[^/]+/teller/members/\\d+/subaccounts/confirm/[^/]+(\\?.*)?$",
+        "timeout_ms": 8000,
+        "description": "final screen"
+      },
+      {
+        "kind": "text_visible",
+        "value": "Sub-Account Opened",
+        "timeout_ms": 8000,
+        "description": "success text visible"
+      }
+    ]
+  },
+  "outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "kind": "business",
+      "description": "No member exists for the supplied member number",
+      "detect": {
+        "text_regex": "No member found matching"
+      },
+      "recovery": null,
+      "escalate": false,
+      "applies_to_steps": null
+    },
+    {
+      "code": "INVALID_MEMBER_NUMBER",
+      "kind": "business",
+      "description": "The member number failed the app's input validation",
+      "detect": {
+        "text_regex": "Invalid member number format|Please enter a member number"
+      },
+      "recovery": null,
+      "escalate": false,
+      "applies_to_steps": null
+    },
+    {
+      "code": "MEMBER_RESTRICTED",
+      "kind": "business",
+      "description": "Member is in Restricted status; the requested change needs a supervisor override",
+      "detect": {
+        "text_regex": "Restricted status; new sub-accounts require supervisor override"
+      },
+      "recovery": null,
+      "escalate": false,
+      "applies_to_steps": null
+    },
+    {
+      "code": "VALIDATION_ERROR",
+      "kind": "business",
+      "description": "The app rejected the submitted form; see the observed error text",
+      "detect": {
+        "text_regex": "Error: The request could not be processed"
+      },
+      "recovery": null,
+      "escalate": false,
+      "applies_to_steps": null
+    },
+    {
+      "code": "SYSTEM_NOTICE_DIALOG",
+      "kind": "recoverable",
+      "description": "Known 'System Notice' maintenance modal; acknowledge and continue",
+      "detect": {
+        "overlay_text_regex": "System Notice"
+      },
+      "recovery": {
+        "action": "click",
+        "target": {
+          "description": "System Notice - Dismiss button",
+          "frame_path": [],
+          "candidates": [
+            {
+              "strategy": "role",
+              "value": {
+                "role": "button",
+                "name": "Dismiss"
+              },
+              "confidence": 0.9,
+              "rationale": "button role + name"
+            },
+            {
+              "strategy": "css",
+              "value": {
+                "selector": "input[type=\"button\"][value=\"Dismiss\"]"
+              },
+              "confidence": 0.6,
+              "rationale": "button value"
+            }
+          ],
+          "recorded": null
+        },
+        "max_attempts": 2,
+        "delay_ms": 1500,
+        "description": "click the Dismiss button in the notice"
+      },
+      "escalate": false,
+      "applies_to_steps": null
+    },
+    {
+      "code": "SESSION_EXPIRED",
+      "kind": "hard",
+      "description": "Operator session expired; a human must re-authenticate on the live session",
+      "detect": {
+        "text_regex": "Your session has expired"
+      },
+      "recovery": null,
+      "escalate": true,
+      "applies_to_steps": null
+    },
+    {
+      "code": "ACCESS_DENIED",
+      "kind": "hard",
+      "description": "Operator role lacks permission for this record; a supervisor may act",
+      "detect": {
+        "text_regex": "Access denied"
+      },
+      "recovery": null,
+      "escalate": true,
+      "applies_to_steps": null
+    },
+    {
+      "code": "APP_ERROR",
+      "kind": "recoverable",
+      "description": "Application error page; reload once, then fail with the error reference",
+      "detect": {
+        "text_regex": "An unexpected application error occurred"
+      },
+      "recovery": {
+        "action": "reload",
+        "target": null,
+        "max_attempts": 1,
+        "delay_ms": 1500,
+        "description": "reload once"
+      },
+      "escalate": false,
+      "applies_to_steps": null
+    }
+  ],
+  "notes": [
+    "Recorded from discovery run 08-discovery-open_member_subaccount using model anthropic:claude-opus-5 in 7 model steps.",
+    "Outcome detectors (8) merged from app profile 'cu_core_teller_desk'.",
+    "Contains risky (state-changing) steps: unattended replay requires approval + confirm_risky.",
+    "Approved by karthikg on 2026-09-11T23:43:22."
+  ]
+}

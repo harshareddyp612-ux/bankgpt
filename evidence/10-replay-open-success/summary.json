@@ -1,0 +1,10 @@
+{
+  "kind": "replay",
+  "status": "SUCCESS",
+  "outcome_code": null,
+  "artifact": "open_member_subaccount",
+  "outputs": {},
+  "run_id": "10-replay-open-success",
+  "duration_s": 1.78,
+  "events": 34
+}

@@ -1,0 +1,129 @@
+[
+  {
+    "index": 1,
+    "tool": "type_text",
+    "args": {
+      "element_index": 4,
+      "text": "{{member_id}}",
+      "press_enter": true,
+      "reason": "Search for the member."
+    },
+    "reason": "Search for the member.",
+    "url_before": "http://127.0.0.1:5055/teller/members/search",
+    "url_after": "http://127.0.0.1:5055/teller/members/12345",
+    "ok": true,
+    "message": "",
+    "navigated": true,
+    "extracted": null,
+    "element": {
+      "index": 4,
+      "tag": "input",
+      "role": "textbox",
+      "name": "",
+      "text": "",
+      "candidates": [
+        {
+          "strategy": "near_text",
+          "value": {
+            "text": "Member Number",
+            "control": "input"
+          },
+          "confidence": 0.78,
+          "rationale": "legacy table layout: first control after the labelling cell"
+        },
+        {
+          "strategy": "css",
+          "value": {
+            "selector": "input[name=\"acct_q\"]"
+          },
+          "confidence": 0.72,
+          "rationale": "server-side form field name; stable because the backend depends on it"
+        },
+        {
+          "strategy": "xpath",
+          "value": {
+            "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/form[1]/table[1]/tbody[1]/tr[1]/td[2]/input[1]"
+          },
+          "confidence": 0.3,
+          "rationale": "structural fallback; breaks on layout change"
+        },
+        {
+          "strategy": "coords",
+          "value": {
+            "x": 253.2,
+            "y": 112.5
+          },
+          "confidence": 0.1,
+          "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+        }
+      ]
+    },
+    "policy": "ALLOW risk=safe :: commit control not classified as risky",
+    "risk": "safe",
+    "confirmed_by": null,
+    "human_actions": [],
+    "screenshot": "step-01.png",
+    "model_text": "",
+    "ts": 1789188139.357752
+  },
+  {
+    "index": 2,
+    "tool": "extract",
+    "args": {
+      "element_index": 31,
+      "output_name": "s01_current_balance",
+      "observed_value": "$4,512.78",
+      "reason": "Goal requires reading S01 balance."
+    },
+    "reason": "Goal requires reading S01 balance.",
+    "url_before": "http://127.0.0.1:5055/teller/members/12345",
+    "url_after": "http://127.0.0.1:5055/teller/members/12345",
+    "ok": true,
+    "message": "",
+    "navigated": false,
+    "extracted": "$4,512.78",
+    "element": {
+      "index": 31,
+      "tag": "td",
+      "role": "cell",
+      "name": "$4,512.78",
+      "text": "$4,512.78",
+      "candidates": [
+        {
+          "strategy": "table_cell",
+          "value": {
+            "header": "Current Balance",
+            "row_anchor": "S01",
+            "col_index": 3
+          },
+          "confidence": 0.86,
+          "rationale": "cell addressed by column header and row anchor; independent of the cell's value"
+        },
+        {
+          "strategy": "xpath",
+          "value": {
+            "xpath": "/html/body[1]/table[2]/tbody[1]/tr[1]/td[1]/table[2]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[3]/td[4]"
+          },
+          "confidence": 0.3,
+          "rationale": "structural fallback; breaks on layout change"
+        },
+        {
+          "strategy": "coords",
+          "value": {
+            "x": 1124.7,
+            "y": 166.5
+          },
+          "confidence": 0.1,
+          "rationale": "last resort; only meaningful for screenshot-driven surfaces at the recorded viewport"
+        }
+      ]
+    },
+    "policy": "ALLOW risk=safe :: does not commit state",
+    "risk": "safe",
+    "confirmed_by": null,
+    "human_actions": [],
+    "screenshot": "step-02.png",
+    "model_text": "",
+    "ts": 1789188142.8291688
+  }
+]

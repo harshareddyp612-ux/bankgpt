@@ -1,0 +1,20 @@
+{
+  "kind": "discovery",
+  "success": true,
+  "stop_reason": "goal met",
+  "goal": "Look up member {{member_id}} and read the current balance of their regular savings (S01) account.",
+  "model": "anthropic:claude-opus-5",
+  "llm_calls": 3,
+  "usage": {
+    "input_tokens": 16798,
+    "output_tokens": 360
+  },
+  "outputs": {
+    "s01_current_balance": "$4,512.78"
+  },
+  "steps": 2,
+  "human_interventions": 0,
+  "run_id": "01-discovery-lookup_member_savings_balance",
+  "duration_s": 13.22,
+  "events": 9
+}

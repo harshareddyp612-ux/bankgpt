@@ -1,0 +1,120 @@
+{
+  "run_id": "11-replay-open-validation-error",
+  "artifact_id": "d211e1c1-52d3-49c7-8675-8066b8f1d813",
+  "artifact_name": "open_member_subaccount",
+  "artifact_version": "1.0.0",
+  "status": "BUSINESS_OUTCOME",
+  "outcome_code": "VALIDATION_ERROR",
+  "message": "The app rejected the submitted form; see the observed error text - observed: \"Error: The request could not be processed. Initial deposit must be at least $25.00. Product Type: -- select -- Regular Savings\"",
+  "outputs": {},
+  "outputs_raw": {},
+  "steps": [
+    {
+      "step_id": "s01",
+      "action": "type",
+      "description": "Type {{member_id}} into Member Number text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Member Number, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 222,
+      "note": null
+    },
+    {
+      "step_id": "s02",
+      "action": "click",
+      "description": "Click Open Sub-Account link",
+      "status": "ok",
+      "locator_used": "role:role:role=link, name=Open Sub-Account",
+      "locator_attempts": [
+        {
+          "strategy": "role",
+          "confidence": 0.9,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 228,
+      "note": null
+    },
+    {
+      "step_id": "s03",
+      "action": "select",
+      "description": "Select '{{product}}' in Product Type dropdown",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Product Type, control=select",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 226,
+      "note": null
+    },
+    {
+      "step_id": "s04",
+      "action": "type",
+      "description": "Type {{nickname}} into Account Nickname text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Account Nickname, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 208,
+      "note": null
+    },
+    {
+      "step_id": "s05",
+      "action": "type",
+      "description": "Type {{deposit}} into Initial Deposit text box",
+      "status": "ok",
+      "locator_used": "near_text:near_text:text=Initial Deposit, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 202,
+      "note": null
+    }
+  ],
+  "failed_step": "s06",
+  "expected": "Click Open Sub-Account button",
+  "observed": "Error: The request could not be processed. Initial deposit must be at least $25.00. Product Type: -- select -- Regular Savings",
+  "human_interventions": [],
+  "llm_calls": 0,
+  "evidence_dir": "/Users/karthikg/Desktop/bankgpt/evidence/11-replay-open-validation-error",
+  "duration_ms": 1645
+}

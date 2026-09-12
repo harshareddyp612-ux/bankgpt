@@ -1,0 +1,12 @@
+{
+  "kind": "replay",
+  "status": "SUCCESS",
+  "outcome_code": null,
+  "artifact": "lookup_member_savings_balance",
+  "outputs": {
+    "s01_current_balance": 4512.78
+  },
+  "run_id": "05-replay-lookup-server-error-recovered",
+  "duration_s": 2.17,
+  "events": 17
+}

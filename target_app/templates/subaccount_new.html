@@ -1,0 +1,24 @@
+{% extends "_layout.html" %}{% set page_title = "Open Sub-Account" %}{% set crumb = "Member Inquiry &raquo; Open Sub-Account" %}
+{% block body %}
+<font size="2"><b>Open Sub-Account</b></font> &nbsp;<font size="1" class="g">Member #{{ m.member_number }} - {{ m.name }}</font>
+<hr size="1">
+{% if errors %}
+<table cellpadding="4" cellspacing="0" class="c4" width="100%"><tr><td>
+ <font class="w">Error: The request could not be processed.</font>
+ <ul style="margin:4px 0 0 18px">{% for e in errors %}<li><font class="w">{{ e }}</font></li>{% endfor %}</ul>
+</td></tr></table><br>
+{% endif %}
+<form method="post" action="/teller/members/{{ m.member_number }}/subaccounts/new" name="frm2">
+<table cellpadding="3" cellspacing="0" border="0">
+ <tr><td class="g">Product Type:</td><td>
+  <select name="prod_cd">
+   <option value="">-- select --</option>
+   {% for code, label in products %}<option value="{{ code }}" {% if form.product==code %}selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select></td></tr>
+ <tr><td class="g">Account Nickname:</td><td><input type="text" name="acct_nick" size="24" maxlength="30" value="{{ form.nickname }}"></td></tr>
+ <tr><td class="g">Initial Deposit:</td><td><input type="text" name="init_dep" size="10" value="{{ form.deposit }}"> <font size="1" class="g">(min $25.00)</font></td></tr>
+ <tr><td class="g">Funding Source:</td><td><select name="fund_src"><option>S01 - Regular Savings</option><option>Cash</option></select></td></tr>
+ <tr><td></td><td><input type="submit" value="Open Sub-Account"> &nbsp; <a href="/teller/members/{{ m.member_number }}">Cancel</a></td></tr>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{
+  "kind": "replay",
+  "status": "BUSINESS_OUTCOME",
+  "outcome_code": "VALIDATION_ERROR",
+  "artifact": "open_member_subaccount",
+  "outputs": {},
+  "run_id": "11-replay-open-validation-error",
+  "duration_s": 1.94,
+  "events": 32
+}

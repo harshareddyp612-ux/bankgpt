@@ -1,0 +1,43 @@
+version: 1
+
+allowed_hosts:
+  - "127.0.0.1:5055"
+  - "localhost:5055"
+
+allowed_path_patterns:
+  - "^/$"
+  - "^/teller/.*"
+denied_path_patterns:
+  - "^/__chaos.*"
+  - "^/__health$"
+  - "^/admin.*"
+
+allowed_actions: [navigate, click, type, select, press, scroll, extract, wait]
+
+risky:
+  element_name_patterns:
+    - "(?i)^(open|submit|confirm|approve|post|transfer|delete|remove|withdraw|deposit|save|update|apply|close account|sign in)"
+  url_patterns:
+    - "/subaccounts/new$"
+    - "/transactions"
+    - "/close"
+  discovery_mode: confirm
+  replay_mode: approved_only
+
+redaction:
+  patterns:
+    - name: ssn
+      regex: '\b\d{3}-\d{2}-\d{4}\b'
+      replace: "***-**-####"
+    - name: card_number
+      regex: '\b(?:\d{4}[ -]){3}\d{4}\b|\b\d{13,16}\b'
+      replace: "[CARD]"
+    - name: anthropic_key
+      regex: 'sk-ant-[A-Za-z0-9_\-]+'
+      replace: "[API_KEY]"
+    - name: bearer
+      regex: '(?i)bearer\s+[A-Za-z0-9._\-]+'
+      replace: "Bearer [TOKEN]"
+    - name: password_kv
+      regex: '(?i)(password|passwd|pwd|op_pass)\s*[:=]\s*\S+'
+      replace: '\1=[REDACTED]'

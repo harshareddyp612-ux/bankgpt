@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>CU-Core Teller Desk v7.2 - {{ page_title }}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<style>
+body { margin:0; background:#dfe3e8; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+.c1 { background:#1f3b63; color:#fff; }
+.c2 { background:#f4f6f9; border:1px solid #9aa5b5; }
+.c3 { background:#e9edf2; }
+.c4 { background:#fff; }
+.g { color:#556; }
+.w { color:#9a3b00; font-weight:bold; }
+.i { color:#134; }
+a { color:#0b3d91; }
+input, select { font-size: 11px; font-family: Verdana, Arial, sans-serif; }
+.ovl { position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.45); }
+.bx { position:absolute; left:34%; top:28%; width:32%; background:#fffbe6; border:2px solid #8a6d00; padding:6px; }
+</style>
+</head>
+<body>
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+ <tr class="c1">
+  <td><font size="3"><b>CU-Core Teller Desk</b></font> <font size="1">&nbsp;Release 7.2.14 &nbsp;|&nbsp; Institution: Springfield Community FCU (DEMO)</font></td>
+  <td align="right"><font size="1">Operator: teller1 &nbsp;|&nbsp; Terminal: T-0412 &nbsp;|&nbsp; <a href="/teller/members/search" style="color:#fff">Member Lookup</a></font></td>
+ </tr>
+ <tr class="c3">
+  <td colspan="2"><font size="1" class="g">Teller &raquo; {{ crumb }}</font></td>
+ </tr>
+</table>
+<br>
+<table width="96%" align="center" cellpadding="6" cellspacing="0" class="c2">
+ <tr><td>
+ {% block body %}{% endblock %}
+ </td></tr>
+</table>
+<br>
+<table width="96%" align="center" cellpadding="2" cellspacing="0"><tr><td align="center"><font size="1" class="g">Confidential - for authorized credit union personnel only. All activity is logged. &copy; Fictional Core Vendor Inc.</font></td></tr></table>
+{% block extra %}{% endblock %}
+</body>
+</html>

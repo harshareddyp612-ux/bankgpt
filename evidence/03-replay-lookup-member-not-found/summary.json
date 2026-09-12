@@ -1,0 +1,10 @@
+{
+  "kind": "replay",
+  "status": "BUSINESS_OUTCOME",
+  "outcome_code": "MEMBER_NOT_FOUND",
+  "artifact": "lookup_member_savings_balance",
+  "outputs": {},
+  "run_id": "03-replay-lookup-member-not-found",
+  "duration_s": 0.82,
+  "events": 7
+}

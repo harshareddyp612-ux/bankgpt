@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+.pytest_cache/
+evidence/_scratch/
+target_app/instance/
+*.pdf
+CHECKLIST.md
+.DS_Store

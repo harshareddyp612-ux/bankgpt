@@ -1,0 +1,17 @@
+{% extends "_layout.html" %}{% set page_title = "Session Expired" %}{% set crumb = "Security" %}
+{% block body %}
+<font size="2"><b>Session Expired</b></font>
+<hr size="1">
+<table cellpadding="4" cellspacing="0" class="c4" width="100%"><tr><td>
+ <font class="w">Your session has expired due to inactivity. Operator re-authentication is required to continue.</font>
+ {% if error %}<br><font class="w">{{ error }}</font>{% endif %}
+</td></tr></table><br>
+<form method="post" action="/teller/session/reauth" name="frm9">
+<input type="hidden" name="next_url" value="{{ next_url }}">
+<table cellpadding="3" cellspacing="0">
+ <tr><td class="g">Operator ID:</td><td><input type="text" name="op_user" size="12"></td></tr>
+ <tr><td class="g">Password:</td><td><input type="password" name="op_pass" size="12"></td></tr>
+ <tr><td></td><td><input type="submit" value="Sign In"></td></tr>
+</table>
+</form>
+{% endblock %}

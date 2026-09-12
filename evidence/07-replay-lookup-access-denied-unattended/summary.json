@@ -1,0 +1,10 @@
+{
+  "kind": "replay",
+  "status": "ESCALATED_ABORTED",
+  "outcome_code": "ACCESS_DENIED",
+  "artifact": "lookup_member_savings_balance",
+  "outputs": {},
+  "run_id": "07-replay-lookup-access-denied-unattended",
+  "duration_s": 0.58,
+  "events": 13
+}

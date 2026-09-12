@@ -1,0 +1,30 @@
+{
+  "run_id": "07-replay-lookup-access-denied-unattended",
+  "artifact_id": "38ad3a71-e96e-4b0b-a99b-4bbaf7edab4d",
+  "artifact_name": "lookup_member_savings_balance",
+  "artifact_version": "1.0.0",
+  "status": "ESCALATED_ABORTED",
+  "outcome_code": "ACCESS_DENIED",
+  "message": "needs a human (ACCESS_DENIED) but this run is unattended (operator=none); intervention request was raised and recorded. Operator role lacks permission for this record; a supervisor may act - observed: \"Access denied: your operator role (TELLER-L1) does not permit viewing this member record. Contact a\"",
+  "outputs": {},
+  "outputs_raw": {},
+  "steps": [],
+  "failed_step": "s01",
+  "expected": "Type {{member_id}} into Member Number text box",
+  "observed": "Access denied: your operator role (TELLER-L1) does not permit viewing this member record. Contact a",
+  "human_interventions": [
+    {
+      "step_id": "s01",
+      "kind": "stuck",
+      "reason_code": "ACCESS_DENIED",
+      "reason": "Operator role lacks permission for this record; a supervisor may act - observed: \"Access denied: your operator role (TELLER-L1) does not permit viewing this member record. Contact a\"",
+      "operator": "none",
+      "decision": "abort",
+      "human_actions": [],
+      "took_s": 0.01
+    }
+  ],
+  "llm_calls": 0,
+  "evidence_dir": "/Users/karthikg/Desktop/bankgpt/evidence/07-replay-lookup-access-denied-unattended",
+  "duration_ms": 272
+}

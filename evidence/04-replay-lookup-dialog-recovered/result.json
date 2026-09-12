@@ -1,0 +1,72 @@
+{
+  "run_id": "04-replay-lookup-dialog-recovered",
+  "artifact_id": "38ad3a71-e96e-4b0b-a99b-4bbaf7edab4d",
+  "artifact_name": "lookup_member_savings_balance",
+  "artifact_version": "1.0.0",
+  "status": "SUCCESS",
+  "outcome_code": null,
+  "message": "checkpoint verified: Looked up member {{member_id}} and read the S01 Regular Savings current balance.",
+  "outputs": {
+    "s01_current_balance": 4512.78
+  },
+  "outputs_raw": {
+    "s01_current_balance": "$4,512.78"
+  },
+  "steps": [
+    {
+      "step_id": "s01",
+      "action": "type",
+      "description": "Type {{member_id}} into Member Number text box",
+      "status": "recovered",
+      "locator_used": "near_text:near_text:text=Member Number, control=input",
+      "locator_attempts": [
+        {
+          "strategy": "near_text",
+          "confidence": 0.78,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [
+        {
+          "code": "SYSTEM_NOTICE_DIALOG",
+          "attempt": 1,
+          "recovery": "click",
+          "ok": true,
+          "matched": "overlay: System Notice Scheduled core maintenance window: Sunday 02:00-04:00 CT. Real-time posting may be delayed. Please acknowl"
+        }
+      ],
+      "confirmed_by": null,
+      "duration_ms": 725,
+      "note": null
+    },
+    {
+      "step_id": "s02",
+      "action": "extract",
+      "description": "Read s01_current_balance from $4,512.78 cell",
+      "status": "ok",
+      "locator_used": "table_cell:table_cell:header=Current Balance, row_anchor=S01, col_index=3",
+      "locator_attempts": [
+        {
+          "strategy": "table_cell",
+          "confidence": 0.86,
+          "ok": true,
+          "pass": 1
+        }
+      ],
+      "attempts": 1,
+      "recoveries": [],
+      "confirmed_by": null,
+      "duration_ms": 83,
+      "note": null
+    }
+  ],
+  "failed_step": null,
+  "expected": null,
+  "observed": null,
+  "human_interventions": [],
+  "llm_calls": 0,
+  "evidence_dir": "/Users/karthikg/Desktop/bankgpt/evidence/04-replay-lookup-dialog-recovered",
+  "duration_ms": 896
+}

@@ -1,0 +1,53 @@
+app_id: cu_core_teller_desk
+vendor: Fictional Core Vendor Inc.
+surface: legacy_web
+app_version: "7.2.14"
+
+outcomes:
+  - code: MEMBER_NOT_FOUND
+    kind: business
+    description: "No member exists for the supplied member number"
+    detect: { text_regex: "No member found matching" }
+  - code: INVALID_MEMBER_NUMBER
+    kind: business
+    description: "The member number failed the app's input validation"
+    detect: { text_regex: "Invalid member number format|Please enter a member number" }
+  - code: MEMBER_RESTRICTED
+    kind: business
+    description: "Member is in Restricted status; the requested change needs a supervisor override"
+    detect: { text_regex: "Restricted status; new sub-accounts require supervisor override" }
+  - code: VALIDATION_ERROR
+    kind: business
+    description: "The app rejected the submitted form; see the observed error text"
+    detect: { text_regex: "Error: The request could not be processed" }
+
+  - code: SYSTEM_NOTICE_DIALOG
+    kind: recoverable
+    description: "Known 'System Notice' maintenance modal; acknowledge and continue"
+    detect: { overlay_text_regex: "System Notice" }
+    recovery:
+      action: click
+      max_attempts: 2
+      description: "click the Dismiss button in the notice"
+      target:
+        description: "System Notice - Dismiss button"
+        candidates:
+          - { strategy: role, value: { role: button, name: Dismiss }, confidence: 0.9, rationale: "button role + name" }
+          - { strategy: css, value: { selector: 'input[type="button"][value="Dismiss"]' }, confidence: 0.6, rationale: "button value" }
+
+  - code: SESSION_EXPIRED
+    kind: hard
+    escalate: true
+    description: "Operator session expired; a human must re-authenticate on the live session"
+    detect: { text_regex: "Your session has expired" }
+  - code: ACCESS_DENIED
+    kind: hard
+    escalate: true
+    description: "Operator role lacks permission for this record; a supervisor may act"
+    detect: { text_regex: "Access denied" }
+  - code: APP_ERROR
+    kind: recoverable
+    escalate: false
+    description: "Application error page; reload once, then fail with the error reference"
+    detect: { text_regex: "An unexpected application error occurred" }
+    recovery: { action: reload, max_attempts: 1, delay_ms: 1500, description: "reload once" }

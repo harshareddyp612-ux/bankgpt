@@ -1,0 +1,12 @@
+{
+  "kind": "replay",
+  "status": "SUCCESS",
+  "outcome_code": null,
+  "artifact": "lookup_member_savings_balance",
+  "outputs": {
+    "s01_current_balance": 4512.78
+  },
+  "run_id": "02-replay-lookup-success",
+  "duration_s": 0.66,
+  "events": 14
+}

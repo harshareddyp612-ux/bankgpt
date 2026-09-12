@@ -1,0 +1,17 @@
+{% extends "_layout.html" %}{% set page_title = "Sub-Account Opened" %}{% set crumb = "Member Inquiry &raquo; Open Sub-Account &raquo; Confirmation" %}
+{% block body %}
+<font size="2"><b>Sub-Account Opened</b></font>
+<hr size="1">
+<table cellpadding="4" cellspacing="0" class="c4" width="100%"><tr><td>
+ <font class="i"><b>Sub-account {{ rec.suffix }} opened successfully for member {{ m.member_number }}.</b></font>
+</td></tr></table>
+<br>
+<table cellpadding="3" cellspacing="0" class="c4">
+ <tr><td class="g">Confirmation Number</td><td>{{ conf }}</td></tr>
+ <tr><td class="g">Member</td><td>{{ m.name }} (#{{ m.member_number }})</td></tr>
+ <tr><td class="g">New Suffix</td><td>{{ rec.suffix }}</td></tr>
+ <tr><td class="g">Initial Deposit</td><td>{{ rec.deposit|money }}</td></tr>
+</table>
+<br>
+<a href="/teller/members/{{ m.member_number }}">Return to Member Inquiry</a>
+{% endblock %}
